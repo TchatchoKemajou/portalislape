@@ -39,11 +39,15 @@ public class Visite implements Serializable {
 
     private  String visitDescription;
 
+    private String visitHost;
+
+    private  String visitCarteTemp;
+
     public Visite() {
     }
 
-    public Visite(Long visitId, Visiteur visitorId, Gardien guardID, Sites visitSite, Date visitDate,
-                  String visitTimeStar, String visiTimeEnd, String visitStatut, String visitDescription) {
+    public Visite(Long visitId, Visiteur visitorId, Gardien guardID, Sites visitSite, Date visitDate, String visitTimeStar,
+                  String visiTimeEnd, String visitStatut, String visitDescription, String visitHost, String visitCarteTemp) {
         this.visitId = visitId;
         this.visitorId = visitorId;
         this.guardID = guardID;
@@ -53,6 +57,24 @@ public class Visite implements Serializable {
         this.visiTimeEnd = visiTimeEnd;
         this.visitStatut = visitStatut;
         this.visitDescription = visitDescription;
+        this.visitHost = visitHost;
+        this.visitCarteTemp = visitCarteTemp;
+    }
+
+    public String getVisitHost() {
+        return visitHost;
+    }
+
+    public void setVisitHost(String visitHost) {
+        this.visitHost = visitHost;
+    }
+
+    public String getVisitCarteTemp() {
+        return visitCarteTemp;
+    }
+
+    public void setVisitCarteTemp(String visitCarteTemp) {
+        this.visitCarteTemp = visitCarteTemp;
     }
 
     public Long getVisitId() {

@@ -18,6 +18,7 @@ public class Visiteur {
 
     private String visitorNumber;
 
+
     @OneToMany(targetEntity = Visite.class, cascade = CascadeType.ALL)
     private List<Visite> visites;
 

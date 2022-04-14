@@ -19,16 +19,28 @@ public class Etudiant {
 
     private String niveau;
 
+    private  boolean etatCarte;
+
     public Etudiant() {
     }
 
-    public Etudiant(Long etuID, String etuMatricule, String etuCode, String etuFullName, String specialite, String niveau) {
+    public Etudiant(Long etuID, String etuMatricule, String etuCode, String etuFullName, String specialite,
+                    String niveau, boolean etatCarte) {
         this.etuID = etuID;
         this.etuMatricule = etuMatricule;
         this.etuCode = etuCode;
         this.etuFullName = etuFullName;
         this.specialite = specialite;
         this.niveau = niveau;
+        this.etatCarte = etatCarte;
+    }
+
+    public boolean isEtatCarte() {
+        return etatCarte;
+    }
+
+    public void setEtatCarte(boolean etatCarte) {
+        this.etatCarte = etatCarte;
     }
 
     public Long getEtuID() {

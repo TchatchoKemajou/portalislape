@@ -11,17 +11,39 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long empID;
 
-    private Long empMatricule;
+    private Long empCode;
+
+    private String empMatricule;
 
     private String empFullName;
+
+    private  boolean etatCarte;
 
     public Employee() {
     }
 
-    public Employee(Long empID, Long empMatricule, String empFullName) {
+    public Employee(Long empID, Long empCode, String empMatricule, String empFullName, boolean etatCarte) {
         this.empID = empID;
+        this.empCode = empCode;
         this.empMatricule = empMatricule;
         this.empFullName = empFullName;
+        this.etatCarte = etatCarte;
+    }
+
+    public boolean isEtatCarte() {
+        return etatCarte;
+    }
+
+    public void setEtatCarte(boolean etatCarte) {
+        this.etatCarte = etatCarte;
+    }
+
+    public Long getEmpCode() {
+        return empCode;
+    }
+
+    public void setEmpCode(Long empCode) {
+        this.empCode = empCode;
     }
 
     public Long getEmpID() {
@@ -32,11 +54,11 @@ public class Employee {
         this.empID = empID;
     }
 
-    public Long getEmpMatricule() {
+    public String getEmpMatricule() {
         return empMatricule;
     }
 
-    public void setEmpMatricule(Long empMatricule) {
+    public void setEmpMatricule(String empMatricule) {
         this.empMatricule = empMatricule;
     }
 

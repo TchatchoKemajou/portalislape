@@ -18,6 +18,9 @@ public class VisiteRestController {
     @GetMapping("/allvisite")
     public List<Visite> allVisites(){return  visitServices.allVisits();}
 
+    @GetMapping("/allvisiteday")
+    public List<Visite> allCustomVisites(){return  visitServices.allVisitorDay();}
+
     @PostMapping("/addvisite")
     public Visite addVisite(@RequestBody VisiteDTO visiteDTO){
         return visitServices.saveVisit(visiteDTO);

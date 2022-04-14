@@ -7,6 +7,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -40,16 +43,37 @@ public class VisitServices {
         return  visitRepository.save(visite);
     }
 
+    public Visite findVisitByCarteTemp(String temporalcarte){
+        List<Visite> visitList = visitRepository.findAll();
+
+        for(Visite visite:visitList){
+            if (visite.getVisitCarteTemp().equals(temporalcarte)){
+                return  visite;
+            }
+        }
+        return  null;
+    }
+
     public List<Visite> allVisite(){return  visitRepository.findAll();}
 
+//    public List<Visite> allVisitToDay(){
+//        return visitRepository.findAllByDate(new java.sql.Date(new Date().getTime()));
+//    }
+
+
     public  List<Visite> allVisitorDay(){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         List<Visite> visiteurList = visitRepository.findAll();
-        List<Visite> visitesDay = null;
+        List<Visite> visitesDay = new ArrayList<>();
+
         for (Visite visite:visiteurList){
-            if (visite.getVisitDate().toString().equals(String.valueOf(new java.sql.Date(new Date().getTime())))){
+            //System.out.printf(sdf.format(visite.getVisitDate()));
+            System.out.printf(String.valueOf(LocalDate.now()));
+            if (sdf.format(visite.getVisitDate()).equals((LocalDate.now()).toString())){
                 visitesDay.add(visite);
             }
         }
+        System.out.printf(String.valueOf(visitesDay.size()));
         return  visitesDay;
     }
 }
