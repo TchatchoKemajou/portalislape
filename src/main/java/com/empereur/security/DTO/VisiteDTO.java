@@ -23,10 +23,13 @@ public class VisiteDTO {
 
     private  String visitDescription;
 
+    private String visitHost;
+
     public VisiteDTO() {
     }
 
-    public VisiteDTO(Long visitId, Long visitorId, Long guardID, Long visitSite, Date visitDate, String visitTimeStar, String visiTimeEnd, String visitStatut, String visitDescription) {
+    public VisiteDTO(Long visitId, Long visitorId, Long guardID, Long visitSite, Date visitDate, String visitTimeStar,
+                     String visiTimeEnd, String visitStatut, String visitDescription, String visitHost) {
         this.visitId = visitId;
         this.visitorId = visitorId;
         this.guardID = guardID;
@@ -36,6 +39,15 @@ public class VisiteDTO {
         this.visiTimeEnd = visiTimeEnd;
         this.visitStatut = visitStatut;
         this.visitDescription = visitDescription;
+        this.visitHost = visitHost;
+    }
+
+    public String getVisitHost() {
+        return visitHost;
+    }
+
+    public void setVisitHost(String visiteHost) {
+        this.visitHost = visiteHost;
     }
 
     public Long getVisitId() {

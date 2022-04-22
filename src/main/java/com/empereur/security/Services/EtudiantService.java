@@ -12,18 +12,26 @@ public class EtudiantService {
     @Autowired
     private EtudiantRepository etudiantRepository;
 
+    public List<Etudiant> findAllEtudiant(){
+        return  etudiantRepository.findAll();
+    }
 
     public  void saveEtudiant(Etudiant etudiant){
         etudiantRepository.save(etudiant);
     }
 
-    public  void desactivateStudent(Long id){
+    public  Etudiant desactivateStudent(Long id){
         Etudiant etudiant = etudiantRepository.getById(id);
         Etudiant newetudiant = etudiant;
 
-        newetudiant.setEtatCarte(false);
+        if(etudiant.isEtatCarte() == true){
+            newetudiant.setEtatCarte(false);
+        }else {
+            newetudiant.setEtatCarte(true);
+        }
 
-        etudiantRepository.save(newetudiant);
+
+        return  etudiantRepository.save(newetudiant);
     }
 
     public Etudiant findEtudiantByCode(String code){

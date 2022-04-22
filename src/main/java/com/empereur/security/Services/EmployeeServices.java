@@ -14,17 +14,27 @@ public class EmployeeServices {
     @Autowired
     private EmployeeRepository employeeRepository;
 
-    public  void  saveEmployee(Employee employee){
-        employeeRepository.save(employee);
+    public List<Employee> findAllEmployee(){
+        return  employeeRepository.findAll();
     }
 
-    public  void desactivateEmployeeCarte(Long id){
+    public  Employee  saveEmployee(Employee employee){
+        return employeeRepository.save(employee);
+    }
+
+    public  Employee desactivateEmployeeCarte(Long id){
         Employee employee = employeeRepository.getById(id);
         Employee newemplyee = employee;
 
-        employee.setEtatCarte(false);
+        if(employee.isEtatCarte() == true){
+            newemplyee.setEtatCarte(false);
+        }else {
+            newemplyee.setEtatCarte(true);
+        }
 
-        employeeRepository.save(newemplyee);
+        return employeeRepository.save(newemplyee);
+
+
     }
 
 

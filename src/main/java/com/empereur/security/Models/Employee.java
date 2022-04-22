@@ -11,7 +11,7 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long empID;
 
-    private Long empCode;
+    private String empCode;
 
     private String empMatricule;
 
@@ -22,7 +22,7 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(Long empID, Long empCode, String empMatricule, String empFullName, boolean etatCarte) {
+    public Employee(Long empID, String empCode, String empMatricule, String empFullName, boolean etatCarte) {
         this.empID = empID;
         this.empCode = empCode;
         this.empMatricule = empMatricule;
@@ -38,11 +38,11 @@ public class Employee {
         this.etatCarte = etatCarte;
     }
 
-    public Long getEmpCode() {
+    public String getEmpCode() {
         return empCode;
     }
 
-    public void setEmpCode(Long empCode) {
+    public void setEmpCode(String empCode) {
         this.empCode = empCode;
     }
 
