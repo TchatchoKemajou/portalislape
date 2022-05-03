@@ -16,11 +16,6 @@ public class CarteRestController {
 
     @GetMapping("/scancarte/{code}")
     public boolean scanCarte(@PathVariable String code){
-
-        if (carteService.ScanAndVerifyCarte(code) == true){
-            return true;
-        }
-        return  false;
-
+        return carteService.ScanAndVerifyCarte(code);
     }
 }

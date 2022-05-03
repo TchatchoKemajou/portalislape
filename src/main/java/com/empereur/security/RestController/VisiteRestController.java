@@ -26,11 +26,11 @@ public class VisiteRestController {
     @Autowired
     private VisitServices visitServices;
 
-    @GetMapping("/allvisite")
-    public List<Visite> allVisites(){return  visitServices.allVisits();}
+    @GetMapping("/allvisite/{id}")
+    public List<Visite> allVisites(@PathVariable Long id){return  visitServices.allVisits(id);}
 
-    @GetMapping("/allvisiteday")
-    public List<Visite> allCustomVisites(){return  visitServices.allVisitToDay();}
+    @GetMapping("/allvisiteday/{id}")
+    public List<Visite> allCustomVisites(@PathVariable Long id){return  visitServices.allVisitToDay(id);}
 
     @PostMapping("/addattente")
     public Visite addAttente(@RequestBody VisiteDTO visite){

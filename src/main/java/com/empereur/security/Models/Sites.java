@@ -2,10 +2,11 @@ package com.empereur.security.Models;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
-public class Sites {
+public class Sites implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

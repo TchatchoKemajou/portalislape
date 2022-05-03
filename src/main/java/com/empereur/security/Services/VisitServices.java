@@ -3,6 +3,7 @@ package com.empereur.security.Services;
 import com.empereur.security.DTO.VisiteDTO;
 import com.empereur.security.Models.Historique;
 import com.empereur.security.Models.Visite;
+import com.empereur.security.Models.Visiteur;
 import com.empereur.security.Repository.VisitRepository;
 import com.lowagie.text.*;
 import com.lowagie.text.pdf.PdfPCell;
@@ -40,12 +41,20 @@ public class VisitServices {
     @Autowired
     private HistoryServices historyServices;
 
-    public List<Visite> allVisits(){
-        return  visitRepository.findAll();
+    public List<Visite> allVisits(Long id){
+        return  visitRepository.findAllByVisitSite(siteSevices.siteById(id));
     }
 
     public  Visite saveVisit(VisiteDTO visitedto){
         Visite visite = new Visite();
+        List<Visite> visites = visitRepository.findAllByVisitStatut("En cours");
+        Visiteur visitor = visitorService.visiteurById(visitedto.getVisitorId());
+
+        for (Visite v: visites){
+            if(v.getVisitorId().equals(visitor)){
+                    return  visite;
+            }
+        }
         BeanUtils.copyProperties(visitedto, visite);
         visite.setGuardID(guardServices.guardById(visitedto.getGuardID()));
         visite.setVisitorId(visitorService.visiteurById(visitedto.getVisitorId()));
@@ -59,6 +68,14 @@ public class VisitServices {
 
     public Visite saveAttente(VisiteDTO visitedto){
         Visite visite = new Visite();
+        List<Visite> visites = visitRepository.findAllByVisitStatut("Attendu");
+        Visiteur visitor = visitorService.visiteurById(visitedto.getVisitorId());
+
+        for (Visite v: visites){
+            if(v.getVisitorId().equals(visitor)){
+                return  visite;
+            }
+        }
         BeanUtils.copyProperties(visitedto, visite);
         visite.setGuardID(guardServices.guardById(visitedto.getGuardID()));
         visite.setVisitorId(visitorService.visiteurById(visitedto.getVisitorId()));
@@ -103,12 +120,12 @@ public class VisitServices {
         return  null;
     }
 
-    public List<Visite> allVisite(){return  visitRepository.findAll();}
+//    public List<Visite> allVisite(){return  visitRepository.findAll();}
 
 
-    public  List<Visite> allVisitToDay(){
+    public  List<Visite> allVisitToDay(Long id){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        List<Visite> visiteurList = visitRepository.findAll();
+        List<Visite> visiteurList = visitRepository.findAllByVisitSite(siteSevices.siteById(id));
         List<Visite> visitesDay = new ArrayList<>();
 
         for (Visite visite:visiteurList){
